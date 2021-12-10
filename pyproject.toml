@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "rest-api-server"
+version = "0.1.0"
+description = "A simple self-hosted server to test REST requests"
+authors = ["Mysterious Ben <datascience@tuta.io>"]
+license = "Apache License 2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.70.0"
+uvicorn = {extras = ["standard"], version = "^0.16.0"}
+
+[tool.poetry.dev-dependencies]
+black = "^21.12b0"
+pylint = "^2.12.2"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+mypy = "^0.910"
+pytest = "^6.2.5"
+pre-commit = "^2.16.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line_length = 99
+target_version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.github
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | \notebooks
+    | .ipynb_checkpoints
+    | __pycache__
+    | data
+    | logs
+    | _build
+    | buck-out
+    | build
+    | dist
+    | snapshots
+    | \.venv
+  )/
+)
+'''
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: integration testing (tests require valid credentials and can be slow)",
+]
+testpaths = [
+    "tests",
+]
